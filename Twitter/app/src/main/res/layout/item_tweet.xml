@@ -35,4 +35,13 @@
 
         android:layout_toEndOf="@+id/ivProfileImage"
         tools:text="This is my Tweet!" />
+
+    <TextView
+        android:id="@+id/tvTimeStamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#2196F3"
+        tools:text="5m" />
 </RelativeLayout>
