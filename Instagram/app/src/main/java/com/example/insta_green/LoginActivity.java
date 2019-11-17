@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -20,23 +21,73 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etUsername;
     private EditText etPassword;
     private Button btnLogin;
+    private Button btnSignup;
+    private String username;
+    private String password;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {//user is already logged in
+            Log.i(TAG, "User is signed in!");
+            goMainActivity();
+        } else {//user is not logged in
+
+        }
 
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        btnSignup = findViewById(R.id.btnSignup);
+        
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Sign Up button clicked.");
+                username = etUsername.getText().toString();
+                password = etPassword.getText().toString();
+                signup(username, password);
+            }
+        });
+        
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "Login button clicked");
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
+                username = etUsername.getText().toString();
+                password = etPassword.getText().toString();
                 login(username, password);
+            }
+        });
+
+        
+    }
+
+    private void signup(String username, String password) {
+
+        // Create the ParseUser
+        ParseUser user = new ParseUser();
+// Set core properties
+        user.setUsername(username);
+        user.setPassword(password);
+
+// Invoke signUpInBackground
+        user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    Log.i(TAG, "sign up successful");
+                    goMainActivity();
+                } else {
+                    Log.i(TAG, "Issue with sign up");
+                    e.printStackTrace();
+                    return;
+
+                }
             }
         });
 
