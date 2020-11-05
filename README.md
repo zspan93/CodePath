@@ -13,4 +13,4 @@ They include the following Android Apps:
 - [x] A photo sharing app similar to Instagram but using Parse as its backend.
 
 
-- Each project folder contains a video walkthrough of each app and its functionality. 
+- Each project folder contains a README.md file that has a video walkthrough of each app and its functionality. 
