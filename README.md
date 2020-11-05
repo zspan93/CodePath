@@ -11,3 +11,6 @@ They include the following Android Apps:
 - [x] A Twitter clone that calls the [Twitter REST API](https://dev.twitter.com/rest/public) to display the users real Twitter Feed. 
 
 - [x] A photo sharing app similar to Instagram but using Parse as its backend.
+
+
+- Each project folder contains a video walkthrough of each app and its functionality. 
